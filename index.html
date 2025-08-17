@@ -1035,151 +1035,131 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Add shadow to navbar on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.main-nav');
-            if (window.scrollY > 20) {
-                nav.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
-                nav.style.background = 'rgba(0, 0, 0, 0.95)';
-            } else {
-                nav.style.boxShadow = 'none';
-                nav.style.background = 'rgba(0, 0, 0, 0.8)';
+   <script>
+    // Donut Charts
+    document.addEventListener('DOMContentLoaded', function() {
+        // Event Donut
+        const eventLabels = [
+            "TNKC - Season 1", "AIMS KRC - Season 4", "Rush Hour - Season 3",
+            "AIMS KEC - Season 5", "TNKC - Season 2", "EKVC - Season 2",
+            "Mega Karting Championship - S1", "NKR", "BFK"
+        ];
+
+        const eventAwards = [1, 1, 4, 2, 3, 1, 5, 4, 1];
+
+        const eventColors = [
+            "#ff6b6b", "#54a0ff", "#feca57", "#1dd1a1", "#a29bfe",
+            "#ff9f43", "#00d2d3", "#fdcb6e", "#dfe6e9"
+        ];
+
+        new Chart(document.getElementById("eventDonut"), {
+            type: 'doughnut',
+            data: {
+                labels: eventLabels,
+                datasets: [{
+                    data: eventAwards,
+                    backgroundColor: eventColors,
+                    borderWidth: 1,
+                    borderColor: 'var(--dark)'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: 'white', // Changed to white
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                },
+                cutout: '65%'
             }
         });
 
-        // Donut Charts
-        document.addEventListener('DOMContentLoaded', function() {
-            // Event Donut
-            const eventLabels = [
-                "TNKC - Season 1", "AIMS KRC - Season 4", "Rush Hour - Season 3",
-                "AIMS KEC - Season 5", "TNKC - Season 2", "EKVC - Season 2",
-                "Mega Karting Championship - S1", "NKR", "BFK"
-            ];
+        // Type Donut
+        const awardLabels = [
+            "Best Aesthetic", "Skidpad", "Innovation", "Acceleration",
+            "Autocross", "Special Endurance", "Best Pilot",
+            "Light Weight Kart", "Overall Runner-Up",
+            "Overall Static Runner", "Endurance Winner",
+            "Best Design & Ergonomics", "Traction Award"
+        ];
 
-            const eventAwards = [1, 1, 4, 2, 3, 1, 5, 4, 1];
+        const awardCounts = [3, 4, 3, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1];
 
-            const eventColors = [
-                "#ff6b6b", "#54a0ff", "#feca57", "#1dd1a1", "#a29bfe",
-                "#ff9f43", "#00d2d3", "#fdcb6e", "#dfe6e9"
-            ];
+        const awardColors = [
+            "#ff9ff3", "#0abde3", "#10ac84", "#feca57", "#5f27cd",
+            "#54a0ff", "#ff6b6b", "#1dd1a1", "#576574", "#00d2d3",
+            "#ff6b81", "#48dbfb", "#fab1a0"
+        ];
 
-            new Chart(document.getElementById("eventDonut"), {
-                type: 'doughnut',
-                data: {
-                    labels: eventLabels,
-                    datasets: [{
-                        data: eventAwards,
-                        backgroundColor: eventColors,
-                        borderWidth: 1,
-                        borderColor: 'var(--dark)'
-                    }]
-                },
-                options: {
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: {
-                                color: 'var(--light-gray)'
+        new Chart(document.getElementById("typeDonut"), {
+            type: 'doughnut',
+            data: {
+                labels: awardLabels,
+                datasets: [{
+                    data: awardCounts,
+                    backgroundColor: awardColors,
+                    borderWidth: 1,
+                    borderColor: 'var(--dark)'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: 'white', // Changed to white
+                            font: {
+                                size: 12
                             }
                         }
-                    },
-                    cutout: '65%'
-                }
-            });
-
-            // Type Donut
-            const awardLabels = [
-                "Best Aesthetic", "Skidpad", "Innovation", "Acceleration",
-                "Autocross", "Special Endurance", "Best Pilot",
-                "Light Weight Kart", "Overall Runner-Up",
-                "Overall Static Runner", "Endurance Winner",
-                "Best Design & Ergonomics", "Traction Award"
-            ];
-
-            const awardCounts = [3, 4, 3, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1];
-
-            const awardColors = [
-                "#ff9ff3", "#0abde3", "#10ac84", "#feca57", "#5f27cd",
-                "#54a0ff", "#ff6b6b", "#1dd1a1", "#576574", "#00d2d3",
-                "#ff6b81", "#48dbfb", "#fab1a0"
-            ];
-
-            new Chart(document.getElementById("typeDonut"), {
-                type: 'doughnut',
-                data: {
-                    labels: awardLabels,
-                    datasets: [{
-                        data: awardCounts,
-                        backgroundColor: awardColors,
-                        borderWidth: 1,
-                        borderColor: 'var(--dark)'
-                    }]
+                    }
                 },
-                options: {
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: {
-                                color: 'var(--light-gray)'
-                            }
-                        }
-                    },
-                    cutout: '65%'
-                }
-            });
-
-            // Category Donut
-            const categoryLabels = ["Static", "Dynamic", "Individual"];
-            const categoryCounts = [7, 10, 1];
-            const categoryColors = ["#6c5ce7", "#00cec9", "#fd79a8"];
-
-            new Chart(document.getElementById("categoryDonut"), {
-                type: 'doughnut',
-                data: {
-                    labels: categoryLabels,
-                    datasets: [{
-                        data: categoryCounts,
-                        backgroundColor: categoryColors,
-                        borderWidth: 1,
-                        borderColor: 'var(--dark)'
-                    }]
-                },
-                options: {
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: {
-                                color: 'var(--light-gray)'
-                            }
-                        }
-                    },
-                    cutout: '65%'
-                }
-            });
+                cutout: '65%'
+            }
         });
-    </script>
+
+        // Category Donut
+        const categoryLabels = ["Static", "Dynamic", "Individual"];
+        const categoryCounts = [7, 10, 1];
+        const categoryColors = ["#6c5ce7", "#00cec9", "#fd79a8"];
+
+        new Chart(document.getElementById("categoryDonut"), {
+            type: 'doughnut',
+            data: {
+                labels: categoryLabels,
+                datasets: [{
+                    data: categoryCounts,
+                    backgroundColor: categoryColors,
+                    borderWidth: 1,
+                    borderColor: 'var(--dark)'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: 'white', // Changed to white
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+    });
+</script>
 </body>
 
 </html>
+
 
 
 
